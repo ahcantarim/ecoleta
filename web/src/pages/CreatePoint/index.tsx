@@ -18,13 +18,6 @@ interface Item {
 	image_url: string;
 }
 
-interface Pokemon {
-	id: number;
-	pokedex: string;
-	nome: string;
-	imagem: string;
-};
-
 interface IBGEUfResponse {
 	sigla: string;
 }
@@ -35,7 +28,6 @@ interface IBGECityResponse {
 
 const CreatePoint = () => {
 	const [items, setItems] = useState<Item[]>([]);
-	const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
 	const [ufs, setUfs] = useState<string[]>([]);
 	const [cities, setCities] = useState<string[]>([]);
@@ -67,12 +59,6 @@ const CreatePoint = () => {
 	useEffect(() => {
 		api.get('items').then(response => {
 			setItems(response.data);
-		});
-	}, []);
-
-	useEffect(() => {
-		axios.get<Pokemon[]>('http://localhost/pokelist/api/v1/pokemon').then(response => {
-			setPokemons(response.data);
 		});
 	}, []);
 
